@@ -1,4 +1,4 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ setStore }) => {
 	return {
 	  store: {
 		contacts: [],
@@ -19,7 +19,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			);
 			if (!resp.ok) throw new Error("Error creating new agenda");
 			await resp.json();
-			// alert("Agenda created! Log in to add contacts.");
 			return true
 		  } catch (error) {
 			alert("Error creating new agenda");
@@ -32,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			);
 			if (!resp.ok) throw new Error("Error retrieving agenda");
 			const data = await resp.json();
-			setStore({ contacts: data });
+			setStore({ contacts: data.contacts });
 		  } catch (error) {
 			alert("Error retrieving agenda");
 		  }
@@ -58,7 +57,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			if (!resp.ok) throw new Error("Error creating new contact");
 			await resp.json();
 			alert("Contact succesfully created!");
-			// store.contacts = data
 		  } catch (error) {
 			alert("Error creating new contact");
 		  }

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Single = () => {
@@ -30,26 +29,26 @@ export const Single = () => {
 				<img width={150} className="rounded-circle" src={store.userImageUrl} alt="" />
 				<form action="submit" className="mt-5" onSubmit={handleSubmit}>
 					<div className="mb-3 d-flex flex-column">
-					<label htmlFor="name"><b>Nombre:</b></label>
-					<input type="text" name="name" id="name" value={contact.name} onChange={handleChange} className="form-control w-25 mx-auto mt-1" placeholder="Name" />
+						<label htmlFor="name"><b>Nombre:</b></label>
+						<input type="text" name="name" id="name" value={contact.name} onChange={handleChange} className="form-control w-25 mx-auto mt-1" placeholder="Name" />
 					</div>
 					<div className="mb-3 d-flex flex-column">
-					<label htmlFor="email"><b>Email:</b></label>
-					<input type="text" name="email"  id="email" value={contact.email} onChange={handleChange} className="form-control w-25 mx-auto mt-1" placeholder="Email" />
+						<label htmlFor="email"><b>Email:</b></label>
+						<input type="text" name="email"  id="email" value={contact.email} onChange={handleChange} className="form-control w-25 mx-auto mt-1" placeholder="Email" />
 					</div>
 					<div className="mb-3 d-flex flex-column">
-					<label htmlFor="Phone"><b>Phone:</b></label>
-					<input type="text" name="phone" id="phone" value={contact.phone} onChange={handleChange} className="form-control w-25 mx-auto mt-1"  placeholder="Phone" />
+						<label htmlFor="Phone"><b>Phone:</b></label>
+						<input type="text" name="phone" id="phone" value={contact.phone} onChange={handleChange} className="form-control w-25 mx-auto mt-1"  placeholder="Phone" />
 					</div>
 					<div className="mb-3 d-flex flex-column">
-					<label htmlFor="address"><b>Address:</b></label>
-					<input type="text" name="address" id="address" value={contact.address} onChange={handleChange} className="form-control w-25 mx-auto mt-1"  placeholder="Address" />
+						<label htmlFor="address"><b>Address:</b></label>
+						<input type="text" name="address" id="address" value={contact.address} onChange={handleChange} className="form-control w-25 mx-auto mt-1"  placeholder="Address" />
 					</div>				
-			<div className="text-center mt-4">
-				<button className="btn btn-success btn-lg" type="submit">
-					Save changes
-				</button>
-			</div>	
+					<div className="text-center mt-4">
+						<button className="btn btn-success btn-lg" type="submit">
+							Save changes
+						</button>
+					</div>	
 				</form>
 			</div>
 		</>

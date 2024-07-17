@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Card } from '../component/card.jsx';
 import { Context } from "../store/appContext";
 import "../../styles/demo.css";
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
-	const contacts = store.contacts
+	// const contacts = store.contacts
 	const [newContact, setNewContact] = useState({
 		name: '',
 		phone: '',
@@ -19,15 +19,14 @@ export const Demo = () => {
 	}
 
 	const addNewContact = () => {
-		actions.createContact(store.username, newContact)
-		console.log(newContact)
-		console.log(store.username)
+		actions.createContact(store.username, newContact);
+		actions.getAgenda(store.username);
 	}
 
 	return (
 		<>
 		<div className="text-center">
-			<button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newContactModal">Create new contact</button>
+			<button className="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#newContactModal">Create new contact</button>
 
 			{/* INICIO HTML MODAL */}
 			<div className="modal fade" id="newContactModal" data-bs-backdrop="static" tabIndex="-1" aria-labelledby="newContactModal" aria-hidden="true">
@@ -70,7 +69,7 @@ export const Demo = () => {
 		</div>
 
 		{/* TARJETAS DE CONTACTO */}
-		{contacts.map((contact, index)=> (
+		{store.contacts?.map((contact, index)=> (
 			<Card key={index} id={contact.id} name={contact.name} email={contact.email} phone={contact.phone} address={contact.address} imageUrl={store.userImageUrl}/>
 		))}
 		</>
