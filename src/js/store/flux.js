@@ -1,7 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 	  store: {
-		contacts: [{a:3},{a:4},{a:5}],
+		contacts: [],
+		username: '',
+		userImageUrl: 'https://images.ecestaticos.com/Dej1imj4NpydN0_cq5dtE1UVvVA=/0x0:848x743/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F063%2F10d%2F720%2F06310d720fa27706776beb45e86c4ebe.jpg'
 	  },
 	  actions: {
 		createUserAgenda: async (user) => {
@@ -16,22 +18,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }
 			);
 			if (!resp.ok) throw new Error("Error creating new agenda");
-			const data = await resp.json();
-			alert("Agenda created! Log in to add contacts.");
+			await resp.json();
+			// alert("Agenda created! Log in to add contacts.");
+			return true
 		  } catch (error) {
-			alert("Error creating new agenda", error);
+			alert("Error creating new agenda");
 		  }
 		},
 		getAgenda: async (user) => {
 		  try {
 			const resp = await fetch(
-			  `https://playground.4geeks.com/contact/agendas/${user}`
+			  `https://playground.4geeks.com/contact/agendas/${user}/contacts`
 			);
 			if (!resp.ok) throw new Error("Error retrieving agenda");
 			const data = await resp.json();
 			setStore({ contacts: data });
 		  } catch (error) {
-			alert("Error retrieving agenda", error);
+			alert("Error retrieving agenda");
 		  }
 		},
 		createContact: async (user, newUserData) => {
@@ -53,12 +56,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }
 			);
 			if (!resp.ok) throw new Error("Error creating new contact");
-			const data = await resp.json();
+			await resp.json();
 			alert("Contact succesfully created!");
-			// getAgenda(user);
-			// setForm;
+			// store.contacts = data
 		  } catch (error) {
-			alert("Error creating new contact", error);
+			alert("Error creating new contact");
 		  }
 		},
 		editContact: async (user, id) => {
@@ -80,10 +82,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }
 			);
 			if (!resp.ok) throw new Error("Error updating contact");
-			const data = await resp.json();
+			await resp.json();
 			alert("Updated contact");
 		  } catch (error) {
-			alert("Error updating contact", error);
+			alert("Error updating contact");
 		  }
 		},
 		deleteAgenda: async (user) => {
@@ -98,10 +100,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }
 			);
 			if (!resp.ok) throw new Error("Error deleting agenda");
-			const data = await resp.json();
+			await resp.json();
 			alert("Agenda deleted");
 		  } catch (error) {
-			alert("Error deleting agenda", error);
+			alert("Error deleting agenda");
 		  }
 		},
 		deleteContact: async (user, id) => {
@@ -116,7 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  }
 			);
 			if (!resp.ok) throw new Error("Error deleting contact");
-			const data = await resp.json();
+			await resp.json();
 			alert("Contact deleted succesfully");
 		  } catch (error) {
 			alert("Error deleting contact", error);
